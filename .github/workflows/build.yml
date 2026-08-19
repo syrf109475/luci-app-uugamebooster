@@ -26,8 +26,8 @@ jobs:
       fail-fast: false
       matrix:
         target:
-          - { name: ipk, sdk_url: "https://downloads.openwrt.org/releases/22.03.0/targets/x86/64/openwrt-sdk-22.03.0-x86-64_gcc-11.2.0_musl.Linux-x86_64.tar.xz", sdk_tar: "SDK.tar.xz", sdk_dir: "SDK", artifact_pattern: "luci-app-uugamebooster_*.ipk" }
-          - { name: apk, sdk_url: "snapshot", sdk_tar: "SNAPSDK.tar.zst", sdk_dir: "SNAPSDK", artifact_pattern: "luci-app-uugamebooster-*.apk" }
+          - { name: ipk, sdk_url: "https://downloads.openwrt.org/releases/24.10.8/targets/mediatek/filogic/openwrt-sdk-24.10.8-mediatek-filogic_gcc-13.3.0_musl.Linux-x86_64.tar.zst", sdk_tar: "SDK.tar.xz", sdk_dir: "SDK", artifact_pattern: "luci-app-uugamebooster_*.ipk" }
+          - { name: apk, sdk_url: "https://downloads.openwrt.org/releases/25.12.5/targets/mediatek/filogic/openwrt-sdk-25.12.5-mediatek-filogic_gcc-14.3.0_musl.Linux-x86_64.tar.zst", sdk_tar: "SNAPSDK.tar.zst", sdk_dir: "SNAPSDK", artifact_pattern: "luci-app-uugamebooster-*.apk" }
     steps:
       - name: 检出源码
         uses: actions/checkout@main
@@ -42,25 +42,10 @@ jobs:
       - name: 下载 SDK
         run: |
           mkdir -p tmp
-          if [ "${{ matrix.target.name }}" = "ipk" ]; then
-            curl -SLk --connect-timeout 30 --retry 2 "${{ matrix.target.sdk_url }}" -o "./tmp/${{ matrix.target.sdk_tar }}"
-            cd tmp
-            tar xf ${{ matrix.target.sdk_tar }}
-            mv openwrt-sdk-* ${{ matrix.target.sdk_dir }}
-          else
-            BASE_URL="https://downloads.openwrt.org/snapshots/targets/x86/64/"
-            SDK_NAME=$(curl -s $BASE_URL | grep -oE 'openwrt-sdk-x86-64[^"]+\.tar\.zst' | head -n 1)
-            if ! curl -SLk --connect-timeout 30 --retry 2 "$BASE_URL/$SDK_NAME" -o "./tmp/${{ matrix.target.sdk_tar }}"; then
-              BASE_URL2="https://mirrors.pku.edu.cn/files/openwrt/snapshots/targets/x86/64/"
-              SDK_NAME=$(curl -s $BASE_URL2 | grep -oE 'openwrt-sdk-x86-64[^"]+\.tar\.zst' | head -n 1)
-              curl -SLk --connect-timeout 30 --retry 2 "$BASE_URL2/$SDK_NAME" -o "./tmp/${{ matrix.target.sdk_tar }}"
-            fi
-            cd tmp
-            zstd -d ${{ matrix.target.sdk_tar }}
-            tar xf SNAPSDK.tar
-            SDK_DIR=$(tar tf SNAPSDK.tar | head -n 1 | cut -d/ -f1)
-            mv "$SDK_DIR" "${{ matrix.target.sdk_dir }}"
-          fi
+          curl -SLk --connect-timeout 30 --retry 2 "${{ matrix.target.sdk_url }}" -o "./tmp/${{ matrix.target.sdk_tar }}"
+          cd tmp
+          tar -I zstd -xf "${{ matrix.target.sdk_tar }}"
+          mv openwrt-sdk-* "${{ matrix.target.sdk_dir }}"
 
       - name: 复制源码到 SDK
         run: |
