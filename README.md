@@ -9,7 +9,6 @@
 ![GitHub Stars](https://img.shields.io/github/stars/lmq8267/luci-app-uugamebooster?style=flat-square&color=yellow)
 ![OpenWrt](https://img.shields.io/badge/OpenWrt-22.03%2B-brightgreen?style=flat-square)
 ![Arch](https://img.shields.io/badge/Arch-arm%20%7C%20aarch64%20%7C%20mipsel-blueviolet?style=flat-square)
-![IPK](https://img.shields.io/badge/Package-IPK-blue?style=flat-square)
 ![APK](https://img.shields.io/badge/Package-APK-ff69b4?style=flat-square)
 ![LuCI](https://img.shields.io/badge/LuCI-compat-orange?style=flat-square)
 
@@ -18,6 +17,12 @@
 </div>
 
 ---
+## 仓库修改说明
+
+- 更换apk构建SDK至：openwrt-sdk-25.12.5-mediatek-filogic_gcc-14.3.0_musl.Linux-x86_64
+- 为通过imagebuilder集成方式报错提供兼容性修复
+- 修复依赖缺失问题 (libstdcpp6)
+- 移除ipk构建
 
 ## 功能特性
 
