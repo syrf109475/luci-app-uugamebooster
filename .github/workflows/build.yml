@@ -66,6 +66,10 @@ jobs:
           make "package/${PACKAGE_NAME}/compile" V=99
           ls ./bin/packages
 
+      - name: debug 111
+        run: |
+          ls ./bin/packages
+
       - name: 上传产物
         uses: actions/upload-artifact@main
         with:
