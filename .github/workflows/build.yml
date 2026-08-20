@@ -64,12 +64,13 @@ jobs:
         run: |
           cd tmp/${{ matrix.target.sdk_dir }}
           make "package/${PACKAGE_NAME}/compile" V=99
+          ls ./bin/packages
 
       - name: 上传产物
         uses: actions/upload-artifact@main
         with:
           name: uugamebooster-${{ matrix.target.name }}
-          path: tmp/${{ matrix.target.sdk_dir }}/bin/packages/mediatek/filogic/base/${{ matrix.target.artifact_pattern }}
+          path: tmp/${{ matrix.target.sdk_dir }}/bin/packages/aarch64/base/${{ matrix.target.artifact_pattern }}
 
   Release:
     runs-on: ubuntu-latest
