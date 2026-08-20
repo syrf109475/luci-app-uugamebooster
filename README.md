@@ -7,7 +7,7 @@
 ![GitHub Release](https://img.shields.io/github/v/release/lmq8267/luci-app-uugamebooster?style=flat-square&color=e94560)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/lmq8267/luci-app-uugamebooster/build.yml?branch=master&style=flat-square&label=build)
 ![GitHub Stars](https://img.shields.io/github/stars/lmq8267/luci-app-uugamebooster?style=flat-square&color=yellow)
-![OpenWrt](https://img.shields.io/badge/OpenWrt-22.03%2B-brightgreen?style=flat-square)
+![OpenWrt](https://img.shields.io/badge/OpenWrt-25.12%2B-brightgreen?style=flat-square)
 ![Arch](https://img.shields.io/badge/Arch-arm%20%7C%20aarch64%20%7C%20mipsel-blueviolet?style=flat-square)
 ![APK](https://img.shields.io/badge/Package-APK-ff69b4?style=flat-square)
 ![LuCI](https://img.shields.io/badge/LuCI-compat-orange?style=flat-square)
@@ -45,7 +45,7 @@
 | 格式 | 文件名 | 适用版本 |
 |------|--------|----------|
 | ipk | `luci-app-uugamebooster_*.ipk` | OpenWrt 22.03+ |
-| apk | `luci-app-uugamebooster-*.apk` | OpenWrt Snapshots |
+| apk | `luci-app-uugamebooster-*.apk` | OpenWrt 25.12+ |
 
 ### 安装 IPK 包
 
