@@ -67,7 +67,9 @@ jobs:
 
       - name: debug 111
         run: |
-          ls ./bin/packages
+          find ./ -type f -name "*uugamebooster-${{ matrix.target.name }}*"
+          echo ========
+          find ./ -type d -name "*uugamebooster-${{ matrix.target.name }}*"
 
       - name: 上传产物
         uses: actions/upload-artifact@main
