@@ -69,7 +69,7 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: uugamebooster-${{ matrix.target.name }}
-          path: tmp/${{ matrix.target.sdk_dir }}/bin/packages/x86_64/base/${{ matrix.target.artifact_pattern }}
+          path: tmp/${{ matrix.target.sdk_dir }}/bin/packages/mediatek/filogic/base/${{ matrix.target.artifact_pattern }}
 
   Release:
     runs-on: ubuntu-latest
