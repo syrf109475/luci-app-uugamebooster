@@ -57,25 +57,19 @@ jobs:
           cd tmp/${{ matrix.target.sdk_dir }}
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-          echo "CONFIG_PACKAGE_${PACKAGE_NAME}=m" >> .config
           make defconfig
+          echo "CONFIG_PACKAGE_${PACKAGE_NAME}=m" >> .config
 
       - name: 编译 UU加速器
         run: |
           cd tmp/${{ matrix.target.sdk_dir }}
           make "package/${PACKAGE_NAME}/compile" V=99
 
-      - name: debug 111
-        run: |
-          find ./ -type f -name "*uugamebooster-${{ matrix.target.name }}*"
-          echo ========
-          find ./ -type d -name "*uugamebooster-${{ matrix.target.name }}*"
-
       - name: 上传产物
         uses: actions/upload-artifact@main
         with:
           name: uugamebooster-${{ matrix.target.name }}
-          path: tmp/${{ matrix.target.sdk_dir }}/bin/packages/aarch64/base/${{ matrix.target.artifact_pattern }}
+          path: tmp/${{ matrix.target.sdk_dir }}/bin/packages/aarch64_cortex-a53/base/${{ matrix.target.artifact_pattern }}
 
   Release:
     runs-on: ubuntu-latest
