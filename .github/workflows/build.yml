@@ -84,12 +84,6 @@ jobs:
           echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
           echo "build_time=$(date '+%Y年%m月%d日%H:%M:%S' | jq -sRr @uri)" >> $GITHUB_ENV
 
-      - name: 下载 IPK 产物
-        uses: actions/download-artifact@main
-        with:
-          name: uugamebooster-ipk
-          path: ./
-
       - name: 下载 APK 产物
         uses: actions/download-artifact@main
         with:
@@ -110,5 +104,4 @@ jobs:
              ```
              
           files: |
-            luci-app-uugamebooster_*.ipk
             luci-app-uugamebooster-*.apk
