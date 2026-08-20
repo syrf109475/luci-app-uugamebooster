@@ -64,7 +64,6 @@ jobs:
         run: |
           cd tmp/${{ matrix.target.sdk_dir }}
           make "package/${PACKAGE_NAME}/compile" V=99
-          ls ./bin/packages
 
       - name: debug 111
         run: |
